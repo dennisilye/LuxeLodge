@@ -1,4 +1,4 @@
-import supabase, {supabaseUrl} from "./supabase"
+import supabase, { supabaseUrl } from "./supabase"
 
 export const getCabins = async () => {
 
@@ -37,7 +37,7 @@ export async function createEditCabin(newCabin, id) {
     : `${supabaseUrl}/storage/v1/object/public/cabin-images/${imageName}`;
 
   // 1. Create/edit cabin
-  let query = supabase.from("cabins");
+  let query: any = supabase.from("cabins");
 
   // A) CREATE
   if (!id) query = query.insert([{ ...newCabin, image: imagePath }]);
