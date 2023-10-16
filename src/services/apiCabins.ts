@@ -13,16 +13,15 @@ export const getCabins = async () => {
 }
 
 export const deleteCabin = async (id: string) => {
-
-  const { data: cabins, error } = await supabase.from('cabins').select('id')
+  const { data, error } = await supabase.from('cabins').delete().eq('id', id);
 
   if (error) {
-    console.log(error);
-    throw new Error(error.message)
+    console.error(error);
+    throw new Error("Cabin could not be deleted");
   }
+  console.log(data);
 
-  return cabins;
-
+  return data;
 }
 
 export async function createEditCabin(newCabin, id) {
